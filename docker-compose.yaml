@@ -1,0 +1,24 @@
+version: "3.1"
+services:
+  mongo:
+        image: mongo:latest
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+          - "27017"
+
+  application:
+      image: dor28/epulatov_application:latest
+      ports:
+      - "8000:5000"
+      environment:
+            MONGO_HOST: mongo
+            MONGO_PORT: 27017
+            BG_COLOR: teal
+            FAIL_FLAG: false
+
+        
+
+
